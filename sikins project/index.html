@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIKINS AUTOMART | Home</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <h1>SIKINS <span>AUTOMART</span></h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="showroom.html">Showroom</a></li>
+                <li><a href="https://www.instagram.com/sikins.automart" target="_blank">📷 Instagram</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Your Image -->
+    <section id="home" class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <a href="showroom.html" class="btn-primary">Explore Collection</a>
+        </div>
+    </section>
+
+    <!-- Contact Section - Info Only (No Form) -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Get in Touch</h2>
+                <p>We're here to help you find your perfect car</p>
+            </div>
+            
+            <div class="contact-info-only">
+                <div class="contact-info-card">
+                    <h3>Contact Information</h3>
+                    <p>Reach out to us anytime. We're active and ready to assist you.</p>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">📞</div>
+                            <div class="contact-text">
+                                <h4>Phone</h4>
+                                <a href="tel:07068845177">0706 884 5177</a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">💬</div>
+                            <div class="contact-text">
+                                <h4>WhatsApp</h4>
+                                <a href="https://wa.me/447068845177">0706 884 5177</a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">📷</div>
+                            <div class="contact-text">
+                                <h4>Instagram</h4>
+                                <a href="https://www.instagram.com/sikins.automart" target="_blank">@sikins.automart</a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">✉️</div>
+                            <div class="contact-text">
+                                <h4>Email</h4>
+                                <a href="mailto:sikins.automart@gmail.com">sikins.automart@gmail.com</a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">📍</div>
+                            <div class="contact-text">
+                                <h4>Location</h4>
+                                <p>Nigeria</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="business-hours">
+                        <h4>Business Hours</h4>
+                        <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
+                        <p>Saturday: 10:00 AM - 4:00 PM</p>
+                        <p>Sunday: Closed</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Reviews Section -->
+    <section id="reviews" class="reviews">
+        <div class="container">
+            <div class="section-header">
+                <h2>Customer Reviews</h2>
+                <p>What our customers say about their experience with SIKINS AUTOMART</p>
+            </div>
+            
+            <div class="reviews-grid" id="reviews-grid">
+                <!-- Reviews will be displayed here -->
+                <div class="empty-reviews">
+                    <div class="icon">⭐</div>
+                    <h3>No Reviews Yet</h3>
+                    <p>Be the first to share your experience with SIKINS AUTOMART!</p>
+                </div>
+            </div>
+            
+            <!-- Add Review Button -->
+            <div class="add-review-container">
+                <button class="btn-add-review" onclick="openReviewModal()">
+                    ✍️ Write a Review
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Add Review Modal -->
+    <div id="reviewModal" class="review-modal" style="display: none;">
+        <div class="review-modal-content">
+            <span class="close-modal" onclick="closeReviewModal()">&times;</span>
+            <h3>Share Your Experience</h3>
+            <p>We'd love to hear about your experience with SIKINS AUTOMART</p>
+            
+            <form id="review-form">
+                <div class="form-group">
+                    <label>Your Name *</label>
+                    <input type="text" id="reviewer-name" placeholder="Enter your name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Rating *</label>
+                    <div class="star-rating">
+                        <span class="star" data-rating="1">★</span>
+                        <span class="star" data-rating="2">★</span>
+                        <span class="star" data-rating="3">★</span>
+                        <span class="star" data-rating="4">★</span>
+                        <span class="star" data-rating="5">★</span>
+                    </div>
+                    <input type="hidden" id="review-rating" value="5">
+                </div>
+                
+                <div class="form-group">
+                    <label>Car Purchased (Optional)</label>
+                    <input type="text" id="review-car" placeholder="e.g., Mercedes-Benz E-Class">
+                </div>
+                
+                <div class="form-group">
+                    <label>Your Review *</label>
+                    <textarea id="review-text" rows="4" placeholder="Tell us about your experience..." required></textarea>
+                </div>
+                
+                <button type="submit" class="btn-submit-review">Submit Review</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© 2025 SIKINS AUTOMART. Premium Automotive Excellence.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

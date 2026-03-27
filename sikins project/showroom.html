@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIKINS AUTOMART | Showroom</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <h1>SIKINS <span>AUTOMART</span></h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="showroom.html" class="active">Showroom</a></li>
+                <li><a href="https://www.instagram.com/sikins.automart" target="_blank">📷 Instagram</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Showroom Section - Full Page -->
+    <section class="showroom-page">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Showroom</h2>
+                <p>Handpicked premium vehicles waiting for you</p>
+            </div>
+            
+           
+                
+                <select id="priceFilter" class="filter-select">
+                    <option value="">All Prices</option>
+                    <option value="0-20000">$0 - $20,000</option>
+                    <option value="20000-40000">$20,000 - $40,000</option>
+                    <option value="40000-60000">$40,000 - $60,000</option>
+                    <option value="60000+">$60,000+</option>
+                </select>
+                
+                <select id="yearFilter" class="filter-select">
+                    <option value="">All Years</option>
+                    <option value="2023">2023+</option>
+                    <option value="2022">2022+</option>
+                    <option value="2021">2021+</option>
+                    <option value="2020">2020+</option>
+                </select>
+                
+                <button class="btn-filter" onclick="applyFilters()">Apply Filters</button>
+                <button class="btn-reset" onclick="resetFilters()">Reset</button>
+            </div>
+            
+            <div class="inventory-grid" id="inventory-grid">
+                <div class="loading">Loading inventory...</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© 2026 SIKINS AUTOMART. Premium Automotive Excellence.</p>
+        </div>
+    </footer>
+
+    <script src="showroom.js"></script>
+</body>
+</html>

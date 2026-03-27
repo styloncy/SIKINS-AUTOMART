@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - SIKINS AUTOMART</title>
+    <link rel="stylesheet" href="admin.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Admin Login Section -->
+    <div id="login-section" class="login-container">
+        <div class="login-card">
+            <div class="login-header">
+                <h1>SIKINS <span>AUTOMART</span></h1>
+                <p>Admin Panel Login</p>
+            </div>
+            <form id="login-form">
+                <div class="form-group">
+                    <input type="password" id="admin-password" placeholder="Enter Password" required>
+                </div>
+                <button type="submit" class="btn-login">Login</button>
+            </form>
+            <p class="login-note">Default password: <strong>admin123</strong> (change after login)</p>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard (Hidden by default) -->
+    <div id="dashboard" style="display: none;">
+        <!-- Navigation -->
+        <nav class="admin-nav">
+            <div class="nav-container">
+                <div class="logo">
+                    <h1>SIKINS <span>AUTOMART</span></h1>
+                    <span class="admin-badge">ADMIN</span>
+                </div>
+                <div class="nav-right">
+                    <button class="btn-logout" onclick="logout()">Logout</button>
+                </div>
+            </div>
+        </nav>
+
+        <div class="admin-container">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <div class="sidebar-menu">
+                    <div class="menu-item active" onclick="showSection('cars')">
+                        <span class="menu-icon">🚗</span>
+                        <span>Car Manager</span>
+                    </div>
+                    <div class="menu-item" onclick="showSection('add-car')">
+                        <span class="menu-icon">➕</span>
+                        <span>Add New Car</span>
+                    </div>
+                    <div class="menu-item" onclick="showSection('discounts')">
+                        <span class="menu-icon">🏷️</span>
+                        <span>Discount Manager</span>
+                    </div>
+                    <div class="menu-item" onclick="showSection('reviews')">
+                        <span class="menu-icon">⭐</span>
+                        <span>Review Manager</span>
+                    </div>
+                    <div class="menu-item" onclick="showSection('settings')">
+                        <span class="menu-icon">⚙️</span>
+                        <span>Settings</span>
+                    </div>
+                    <div class="menu-item" onclick="showSection('stats')">
+                        <span class="menu-icon">📊</span>
+                        <span>Statistics</span>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="admin-main">
+                <!-- Car Manager Section -->
+                <div id="cars-section" class="admin-section active">
+                    <div class="section-header">
+                        <h2>Car Manager</h2>
+                        <button class="btn-primary" onclick="showSection('add-car')">+ Add New Car</button>
+                    </div>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-value" id="total-cars">0</div>
+                            <div class="stat-label">Total Cars</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="total-value">₦0</div>
+                            <div class="stat-label">Total Inventory Value</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="active-discounts">0</div>
+                            <div class="stat-label">Active Discounts</div>
+                        </div>
+                    </div>
+                    
+                    <div class="cars-table-container">
+                        <table class="cars-table">
+                            <thead>
+                                <tr>
+                                    <th>Image</th>
+                                    <th>Car Name</th>
+                                    <th>Original Price</th>
+                                    <th>Discount</th>
+                                    <th>Final Price</th>
+                                    <th>Year</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="cars-table-body">
+                                <!-- Cars will appear here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Add Car Section -->
+                <div id="add-car-section" class="admin-section">
+                    <div class="section-header">
+                        <h2>Add New Car</h2>
+                        <button class="btn-secondary" onclick="showSection('cars')">← Back to Cars</button>
+                    </div>
+                    
+                    <div class="form-container">
+                        <form id="add-car-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Car Name *</label>
+                                    <input type="text" id="car-name" required placeholder="e.g., 2023 Mercedes-Benz E-Class">
+                                </div>
+                                <div class="form-group">
+                                    <label>Price (₦) *</label>
+                                    <input type="number" id="car-price" required placeholder="e.g., 25000000">
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Year *</label>
+                                    <input type="number" id="car-year" required placeholder="2023">
+                                </div>
+                                <div class="form-group">
+                                    <label>Mileage *</label>
+                                    <input type="text" id="car-mileage" required placeholder="e.g., 8,500 mi">
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Fuel Type *</label>
+                                    <select id="car-fuel">
+                                        <option value="Petrol">Petrol</option>
+                                        <option value="Diesel">Diesel</option>
+                                        <option value="Electric">Electric</option>
+                                        <option value="Hybrid">Hybrid</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Transmission *</label>
+                                    <select id="car-transmission">
+                                        <option value="Automatic">Automatic</option>
+                                        <option value="Manual">Manual</option>
+                                        <option value="Semi-Automatic">Semi-Automatic</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Image URL *</label>
+                                <input type="text" id="car-image" required placeholder="https://... or images/car-name.jpg">
+                                <small>Tip: Use Unsplash links or upload images to your folder</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Description</label>
+                                <textarea id="car-description" rows="3" placeholder="Car features, condition, service history..."></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Features (comma separated)</label>
+                                <input type="text" id="car-features" placeholder="Leather seats, Sunroof, Navigation, Backup camera">
+                            </div>
+                            
+                            <button type="submit" class="btn-save">Save Car</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Discount Manager Section -->
+                <div id="discounts-section" class="admin-section">
+                    <div class="section-header">
+                        <h2>Discount Manager</h2>
+                        <button class="btn-primary" onclick="openDiscountModal()">+ Create Discount</button>
+                    </div>
+                    
+                    <div class="discounts-grid" id="discounts-grid">
+                        <!-- Active discounts will appear here -->
+                    </div>
+                    
+                    <div class="info-box">
+                        <h4>💡 How Discounts Work</h4>
+                        <p>Create discounts for specific cars or categories. Discounts will automatically show on the customer website with a badge and original price crossed out.</p>
+                    </div>
+                </div>
+
+                <!-- Review Manager Section -->
+                <div id="reviews-section" class="admin-section">
+                    <div class="section-header">
+                        <h2>Review Manager</h2>
+                        <p>Approve or delete customer reviews</p>
+                    </div>
+                    
+                    <div class="reviews-table-container">
+                        <table class="reviews-table">
+                            <thead>
+                                <tr>
+                                    <th>Customer</th>
+                                    <th>Rating</th>
+                                    <th>Review</th>
+                                    <th>Car</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="reviews-table-body">
+                                <!-- Reviews will appear here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Settings Section -->
+                <div id="settings-section" class="admin-section">
+                    <div class="section-header">
+                        <h2>Settings</h2>
+                    </div>
+                    
+                    <div class="settings-form">
+                        <div class="form-group">
+                            <label>Phone Number</label>
+                            <input type="text" id="settings-phone" value="07068845177">
+                        </div>
+                        <div class="form-group">
+                            <label>WhatsApp Number</label>
+                            <input type="text" id="settings-whatsapp" value="07068845177">
+                        </div>
+                        <div class="form-group">
+                            <label>Instagram Handle</label>
+                            <input type="text" id="settings-instagram" value="sikins.automart">
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" id="settings-email" value="sikins.automart@gmail.com">
+                        </div>
+                        <div class="form-group">
+                            <label>Business Hours</label>
+                            <textarea id="settings-hours" rows="3">Monday - Friday: 9:00 AM - 6:00 PM
+Saturday: 10:00 AM - 4:00 PM
+Sunday: Closed</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Admin Password</label>
+                            <input type="password" id="settings-password" placeholder="Change password">
+                            <small>Leave blank to keep current password</small>
+                        </div>
+                        <button class="btn-save" onclick="saveSettings()">Save Settings</button>
+                    </div>
+                </div>
+
+                <!-- Statistics Section -->
+                <div id="stats-section" class="admin-section">
+                    <div class="section-header">
+                        <h2>Statistics</h2>
+                    </div>
+                    
+                    <div class="stats-grid-large">
+                        <div class="stat-card-large">
+                            <div class="stat-icon">🚗</div>
+                            <div class="stat-info">
+                                <div class="stat-value" id="stats-total-cars">0</div>
+                                <div class="stat-label">Total Cars</div>
+                            </div>
+                        </div>
+                        <div class="stat-card-large">
+                            <div class="stat-icon">💰</div>
+                            <div class="stat-info">
+                                <div class="stat-value" id="stats-total-value">₦0</div>
+                                <div class="stat-label">Inventory Value</div>
+                            </div>
+                        </div>
+                        <div class="stat-card-large">
+                            <div class="stat-icon">⭐</div>
+                            <div class="stat-info">
+                                <div class="stat-value" id="stats-avg-rating">0</div>
+                                <div class="stat-label">Average Rating</div>
+                            </div>
+                        </div>
+                        <div class="stat-card-large">
+                            <div class="stat-icon">📝</div>
+                            <div class="stat-info">
+                                <div class="stat-value" id="stats-total-reviews">0</div>
+                                <div class="stat-label">Total Reviews</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="chart-container">
+                        <h3>Inventory by Year</h3>
+                        <div id="year-chart" class="chart-bars"></div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Discount Modal -->
+    <div id="discountModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeDiscountModal()">&times;</span>
+            <h3>Create Discount</h3>
+            <form id="discount-form">
+                <div class="form-group">
+                    <label>Select Car</label>
+                    <select id="discount-car-id" required>
+                        <option value="">-- Select Car --</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Discount Type</label>
+                    <select id="discount-type">
+                        <option value="percentage">Percentage (%)</option>
+                        <option value="fixed">Fixed Amount (₦)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Discount Value</label>
+                    <input type="number" id="discount-value" required placeholder="e.g., 10 or 500000">
+                </div>
+                <div class="form-group">
+                    <label>Discount Label (Optional)</label>
+                    <input type="text" id="discount-label" placeholder="e.g., Summer Sale, Limited Offer">
+                </div>
+                <div class="form-group">
+                    <label>Valid Until (Optional)</label>
+                    <input type="date" id="discount-valid-until">
+                </div>
+                <button type="submit" class="btn-save">Apply Discount</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>
